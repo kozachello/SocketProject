@@ -21,7 +21,7 @@ import java.util.Locale;
  * GUI til {@link home.client.ClientView }
  * - client view.
  *
- * @author Alex
+ * @author Козак
  */
 public class ClientView extends Application {
 
@@ -38,7 +38,7 @@ public class ClientView extends Application {
         grid.setPadding(new Insets(25,25,25,25));
         Text scenetitle = new Text("Добро Пожаловать");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.MEDIUM, 20));
-        grid.add(scenetitle, 0, 0, 2, 1);
+        grid.add(scenetitle, 0, 0, 3, 1);
 
         Label userName = new Label("Login:");
         grid.add(userName, 0, 1);
@@ -52,7 +52,7 @@ public class ClientView extends Application {
         PasswordField passBox = new PasswordField();
         grid.add(passBox, 1, 2);
 
-        Button button = new Button("log in");
+        Button button = new Button("войти");
         button.setAlignment(Pos.BASELINE_CENTER);
         HBox hbox = new HBox(10);
         hbox.setAlignment(Pos.BOTTOM_RIGHT);
@@ -62,7 +62,7 @@ public class ClientView extends Application {
         Scene scene = new Scene(grid, 400, 300);
 
         button.setOnAction(event -> {
-
+            // нужен какой то экшн...
         });
 
         primaryStage.setScene(scene);
