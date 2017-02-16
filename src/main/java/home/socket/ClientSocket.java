@@ -23,7 +23,7 @@ public class ClientSocket {
                 String line = "Hello!";
                 dout.write(line.getBytes());
                 dout.flush();
-                byte[] data = new byte[32*1024];
+                byte[] data = new byte[8*1024];
                 int readBytes = din.read(data);
                 System.out.printf("Server> %s", new String(data, 0, readBytes));
             }
