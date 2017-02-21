@@ -31,8 +31,9 @@ public class ClientView extends Application {
     private Parent createContent() { // metode for vores kontent
 
         TextField input = new TextField();
-        chatarea.setPrefHeight(400);
-        VBox root = new VBox(20, chatarea);
+        input.setPrefHeight(30);
+        chatarea.setPrefHeight(420);
+        VBox root = new VBox(30, chatarea, input);
         root.setPrefSize(600,500);
         return root;
 

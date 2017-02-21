@@ -18,12 +18,13 @@ public class Client implements Runnable {
         this.username = username;
         chatlist.add(this.username);
         t = new Thread(this, username);
-        if(username!=null)
         t.start();
     }
 
     public boolean usernameIsNotNull() {
-        return true;
+        if(this.username.getBytes().length>0) {
+            return true;
+        } else return false;
     }
 
     public String getClients() {
