@@ -23,7 +23,7 @@ public class ServSocket {
             try (InputStream in = socket.getInputStream(); OutputStream out = socket.getOutputStream()) {
                 DataInputStream din = new DataInputStream(in);
                 DataOutputStream dout = new DataOutputStream(out);
-                byte[] buf = new byte[32*1024];
+                byte[] buf = new byte[8*1024];
                 int readBytes = din.read(buf);
                 String line = new String(buf, 0, readBytes);
                 System.out.printf("Client> %s", line);

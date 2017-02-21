@@ -20,12 +20,12 @@ public class ClientSocket {
             try (InputStream in = socket.getInputStream(); OutputStream out = socket.getOutputStream()) {
                 DataInputStream din = new DataInputStream(in);
                 DataOutputStream dout = new DataOutputStream(out);
-                String line = "Hello!";
-                dout.write(line.getBytes());
+                //String line = "Hello!";
+                //dout.write(line.getBytes());
                 dout.flush();
-                byte[] data = new byte[32*1024];
+                byte[] data = new byte[8*1024];
                 int readBytes = din.read(data);
-                System.out.printf("Server> %s", new String(data, 0, readBytes));
+                //System.out.printf("Server> %s", new String(data, 0, readBytes));
             }
         } catch (IOException e) {
             e.printStackTrace();
