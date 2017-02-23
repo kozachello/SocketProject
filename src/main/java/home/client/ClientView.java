@@ -44,7 +44,7 @@ public class ClientView extends Application {
 
     public void startChat(Client chatMember) throws Exception {
 
-        while (chatMember.isClientThere(chatMember.getUsername())) {
+        if (chatMember.isClientThere(chatMember.getUsername())) {
             Stage primaryStage = new Stage();
             primaryStage.setTitle("CHAT");
             primaryStage.setScene(new Scene(createContent()));
@@ -85,14 +85,22 @@ public class ClientView extends Application {
             // нужен какой то экшн...
             Client user = new Client(userBox.getText());
             System.out.println(user);
+            ThreadControl userThread = new ThreadControl(user.getUsername());
             if(user.usernameIsNotNull()) {
                 primaryStage.close();
                 try {
                     startChat(user);
+                    // присоединить сокет
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
+        });
+
+        button.setOnKeyPressed(event -> {
+            // событие при нажатии ENTER
+
         });
 
         primaryStage.setScene(scene);

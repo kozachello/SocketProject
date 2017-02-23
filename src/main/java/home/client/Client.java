@@ -29,8 +29,8 @@ public class Client  {
     }
 
     public int checkUserId(String username) {
-        int number = chatlist.indexOf(username);
-        return number;
+        id = chatlist.indexOf(username);
+        return id;
     }
 
     public String getClients() {
