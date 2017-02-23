@@ -24,7 +24,7 @@ public class ThreadControl implements Runnable {
     @Override
     public void run() {
         try {
-            user.main();
+            user.main(user.getSocketUser());
         } catch (IOException e) {
             e.printStackTrace();
         }

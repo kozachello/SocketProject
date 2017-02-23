@@ -1,6 +1,6 @@
 package home.client;
 
-import javafx.application.Application;
+import home.server.ThreadControl;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
@@ -11,32 +11,31 @@ import javafx.stage.Stage;
 /**
  * Created by Козак on 14.02.2017.
  */
-public class ClientDesktop extends Application {
+public class ClientDesktop extends ClientView {
 
     private TextArea chatarea = new TextArea(); // main area
 
     private Parent createContent() { // metode for vores kontent
+
+        ThreadControl t;
+        String clientId;
         TextField input = new TextField();
-        chatarea.setPrefHeight(400);
-        VBox root = new VBox(20, chatarea);
-        root.setPrefSize(600,500);
+        input.setPrefHeight(30);
+        chatarea.setPrefHeight(420);
+        VBox root = new VBox(30, chatarea, input);
+        root.setPrefSize(600, 500);
         return root;
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-
-        primaryStage.setTitle("CHAT");
-        primaryStage.setScene(new Scene(createContent()));
-        primaryStage.show();
 
     }
 
-    /*public static void showChat()  {
-        launch();
-    }*/
+    public void startChat(Client chatMember) throws Exception {
 
-    public static void main(String args[]) {
-        launch(args);
+        if (chatMember.isClientThere(chatMember.getUsername())) {
+            Stage primaryStage = new Stage();
+            primaryStage.setTitle("CHAT");
+            primaryStage.setScene(new Scene(createContent()));
+            primaryStage.show();
+        }
+
     }
 }

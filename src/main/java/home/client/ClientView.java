@@ -4,15 +4,12 @@ import home.server.ThreadControl;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -26,32 +23,6 @@ import javafx.stage.Stage;
  * @author Козак
  */
 public class ClientView extends Application {
-
-    private TextArea chatarea = new TextArea(); // main area
-
-    private Parent createContent() { // metode for vores kontent
-
-        ThreadControl t;
-        String clientId;
-        TextField input = new TextField();
-        input.setPrefHeight(30);
-        chatarea.setPrefHeight(420);
-        VBox root = new VBox(30, chatarea, input);
-        root.setPrefSize(600,500);
-        return root;
-
-    }
-
-    public void startChat(Client chatMember) throws Exception {
-
-        if (chatMember.isClientThere(chatMember.getUsername())) {
-            Stage primaryStage = new Stage();
-            primaryStage.setTitle("CHAT");
-            primaryStage.setScene(new Scene(createContent()));
-            primaryStage.show();
-        }
-
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -80,6 +51,7 @@ public class ClientView extends Application {
         grid.add(hbox, 1, 4);
 
         Scene scene = new Scene(grid, 400, 300);
+        ClientDesktop desktop = new ClientDesktop();
 
         button.setOnAction(event -> {
             // нужен какой то экшн...
@@ -89,9 +61,9 @@ public class ClientView extends Application {
             if(user.usernameIsNotNull()) {
                 primaryStage.close();
                 try {
-                    startChat(user);
+                    desktop.startChat(user);
                     // присоединить сокет
-
+                    //userThread.run();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

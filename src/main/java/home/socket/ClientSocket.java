@@ -16,7 +16,11 @@ public class ClientSocket {
         socketUser = username;
     }
 
-    public static void main() throws IOException {
+    public String getSocketUser() {
+        return socketUser;
+    }
+
+    public static void main(String socketUser) throws IOException {
 
         Socket socket = null;
 
@@ -25,18 +29,19 @@ public class ClientSocket {
                 try (InputStream in = socket.getInputStream(); OutputStream out = socket.getOutputStream()) {
                     DataInputStream din = new DataInputStream(in);
                     DataOutputStream dout = new DataOutputStream(out);
-                    String line = "Hello!";
+                    String line = "> Hello!";
+                    String space = " ";
+                    dout.write(socketUser.getBytes());
+                    dout.write(space.getBytes());
                     dout.write(line.getBytes());
                     dout.flush();
                     byte[] data = new byte[8 * 1024];
                     int readBytes = din.read(data);
-                    System.out.printf("Server> %s", new String(data, 0, readBytes));
+                    System.out.printf("Server ==> %s", new String(data, 0, readBytes));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-            } finally {
-                socket.close();
-            }
+            } // finally ...
         }
     }
 
