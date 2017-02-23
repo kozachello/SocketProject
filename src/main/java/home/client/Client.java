@@ -7,24 +7,30 @@ import java.util.ArrayList;
  * Created by Козак on 13.02.2017.
  */
 
-public class Client implements Runnable {
+public class Client  {
 
     private String username;
     private int id;
-    private Thread t;
     ArrayList<String> chatlist = new ArrayList<>();
 
     public Client(String username) {
         this.username = username;
         chatlist.add(this.username);
-        t = new Thread(this, username);
-        t.start();
     }
 
     public boolean usernameIsNotNull() {
         if(this.username.getBytes().length>0) {
             return true;
         } else return false;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public int checkUserId(String username) {
+        int number = chatlist.indexOf(username);
+        return number;
     }
 
     public String getClients() {
@@ -47,8 +53,4 @@ public class Client implements Runnable {
                 '}';
     }
 
-    @Override
-    public void run() {
-
-    }
 }

@@ -1,5 +1,6 @@
 package home.client;
 
+import home.server.ThreadControl;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -30,6 +31,8 @@ public class ClientView extends Application {
 
     private Parent createContent() { // metode for vores kontent
 
+        ThreadControl t;
+        String clientId;
         TextField input = new TextField();
         input.setPrefHeight(30);
         chatarea.setPrefHeight(420);
@@ -39,12 +42,14 @@ public class ClientView extends Application {
 
     }
 
-    public void startChat() throws Exception {
+    public void startChat(Client chatMember) throws Exception {
 
-        Stage primaryStage = new Stage();
-        primaryStage.setTitle("CHAT");
-        primaryStage.setScene(new Scene(createContent()));
-        primaryStage.show();
+        while (chatMember.isClientThere(chatMember.getUsername())) {
+            Stage primaryStage = new Stage();
+            primaryStage.setTitle("CHAT");
+            primaryStage.setScene(new Scene(createContent()));
+            primaryStage.show();
+        }
 
     }
 
@@ -83,7 +88,7 @@ public class ClientView extends Application {
             if(user.usernameIsNotNull()) {
                 primaryStage.close();
                 try {
-                    startChat();
+                    startChat(user);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
