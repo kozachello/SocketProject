@@ -13,7 +13,7 @@ public class ClientSocket {
     private String socketUser;
 
     public ClientSocket(String username) {
-        socketUser = username;
+        this.socketUser = username;
     }
 
     public String getSocketUser() {

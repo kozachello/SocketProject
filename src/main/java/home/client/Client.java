@@ -46,6 +46,10 @@ public class Client  {
         } else return false;
     }
 
+    public void removeClient() {
+        chatlist.remove(this.username);
+    }
+
     @Override
     public String toString() {
         return "Client{" +

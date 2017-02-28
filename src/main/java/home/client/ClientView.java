@@ -54,7 +54,7 @@ public class ClientView extends Application {
         ClientDesktop desktop = new ClientDesktop();
 
         button.setOnAction(event -> {
-            // нужен какой то экшн...
+            // some action here...
             Client user = new Client(userBox.getText());
             System.out.println(user);
             ThreadControl userThread = new ThreadControl(user.getUsername());
@@ -62,7 +62,7 @@ public class ClientView extends Application {
                 primaryStage.close();
                 try {
                     desktop.startChat(user);
-                    // присоединить сокет
+                    // must connect to the socket..
                     //userThread.run();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -70,10 +70,13 @@ public class ClientView extends Application {
             }
         });
 
-        button.setOnKeyPressed(event -> {
-            // событие при нажатии ENTER
+        /*button.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
-        });
+            @Override
+            public void handle(KeyEvent event) {
+
+            }
+        }*/
 
         primaryStage.setScene(scene);
         primaryStage.show();

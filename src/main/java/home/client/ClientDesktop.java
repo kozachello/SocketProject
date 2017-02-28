@@ -30,11 +30,15 @@ public class ClientDesktop extends ClientView {
 
     public void startChat(Client chatMember) throws Exception {
 
+        Stage primaryStage = new Stage();
         if (chatMember.isClientThere(chatMember.getUsername())) {
-            Stage primaryStage = new Stage();
+
             primaryStage.setTitle("CHAT");
             primaryStage.setScene(new Scene(createContent()));
             primaryStage.show();
+        }
+        if(!primaryStage.isShowing()) {
+            chatMember.removeClient();
         }
 
     }
